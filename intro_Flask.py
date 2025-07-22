@@ -105,7 +105,7 @@ from wtforms.validators import DataRequired, Length #Imports the validators. Ful
 
 class RegisterForm(FlaskForm):
     username = StringField("Nombre de usuario: ", validators= [DataRequired(), Length(min=4, max= 25)])
-    password = PasswordField("Password: ", validators= [DataRequired(), Length(min=6, max= 40)])
+    password = PasswordField("Password: ", validators= [DataRequired(), Length(min=6, max= 40)])  #Validators para poder validar la informacion del field de la contraseña.
     submit = SubmitField("Registrar: ")
 
 #Registro de usuario
