@@ -67,7 +67,7 @@ register.html:
 
 Section 5:
 - Empezaremos a hacer una aplicacion mas completa en donde aplicaremos todo lo visto (rutas, vistas, plantillas, formularios) y tambien cosas nuevas. (DBs, auth, sesiones, librerias utiles)
-- La app que haremos se llama ToDoList.
+- La app que haremos se llama ToDoList. Nos permitira registrarnos e iniciar sesion, validar los datos al momento de iniciar la sesion, tener una DB de usuarios y contraseñas y poder crear tareas con titulo y descripcion:
 
 
 
@@ -83,3 +83,8 @@ Brainstorming de mis ideas para la app de Flask:
 - TL;DR of the instructions (Reserved for senior RCL engineers? Something alike JPMC requirements)
 - Display instructions? (Altough SP Hub does that already.... Login is a painful friction point though)
 - Auto-generate escalation template
+
+
+
+pa pasar todo a github: git push -u origin main
+pa crear virtual environments: python3 -m venv <name>
