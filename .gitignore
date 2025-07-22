@@ -1,0 +1,29 @@
+# Entorno virtual
+.env/
+
+# Archivos de Python compilados
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Archivos de logs y bases de datos
+*.log
+*.sqlite3
+instance/
+*.db
+
+# Archivos de configuración local (IDE)
+.vscode/
+.idea/
+
+# Archivos del sistema operativo
+.DS_Store
+Thumbs.db
+
+# Archivos sensibles (si usas dotenv)
+.env  # ← si tenés un archivo de variables de entorno llamado .env
+
+# Archivos de caché
+.cache/
+
