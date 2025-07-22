@@ -1,0 +1,15 @@
+{% extends 'base.html' %} {# Esta instruccion hace que podamos heredar el contenido ubicado en la plantilla base.html #}
+
+{% block title %}Saludo y email{% endblock %}
+
+{% block content %}
+    {% if data.name is none and data.age is none %}
+        <h1>Hola Mudno!</h1>
+    {% elif data.age is none %}
+        <h2> Mi nombre es {{ data.name }} </h2>
+    {% elif data.email is none %}
+        <h1>Hola {{data.name}}, el doble de tu edad es {{data.age * 2}}</h1>
+    {% else %}
+        <h2>Hola {{data.name}}, el doble de tu edad es {{data.age * 2}} y tu correo es {{data.email}}</h2>
+    {% endif %}
+{% endblock %}

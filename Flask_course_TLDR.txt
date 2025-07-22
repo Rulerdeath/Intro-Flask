@@ -1,0 +1,85 @@
+Section 2:
+- Aprendi a instalar flask
+- Aprendi a hacer un Hola mundo sencillo con una ruta @app.route("/")
+- Aprendi a usar el flag --debug al correr la app de flask desde la terminal.
+- Aprendi a hacer nuevas rutas aparte de "/". Por ejemple,  @app.route('/hello'). Se pueden usar varias rutas que den a la misma vista
+- Aprendi a pasar variables a las rutas con <> dentro de la ruta @app.route('/hello/<name>/<int:age>'). La variable se tiene que passar como argumento a la funcion para que pueda ser utilizada: 
+return 'Hola, {name}! Tu edad es {age}!'
+- Aprendi a agregar escapes HTML para que imprima cualquier codigo en el URL como plaintext.
+from markupsafe import escape  # Sirve para hacer escapes HTML, osea que la vista pueda imprimir caracteres especiales en plaintext que otherwise serian interpreted como codigo.
+
+@app.route("/code/<path:code>")
+def code(code):
+    return f"<code>{escape(code)}</code>"
+
+Section 3:
+uuuuuuuuuuuh
+
+Section 4:
+- Introduccion a formularios. Se pueden usar con CSS o HTML, pero las bibliotecas facilitan el proceso y añaden otras funcionalidades.
+- Se usan los metodos GET y POST para poder mandar informacion de un formulario sin que se vea en el URL. Esta informacion despues puede ser usada en la funcion de la vista para poder procesar los datos:
+@app.route("/auth/register", methods = ['GET', 'POST'])
+def register():
+    print(request.form)
+    if request.method == 'POST':
+        username = request.form['username']
+        password = request.form['password']
+        return f"Nombre de usuario: {username}\nContraseña: {password}"
+
+- Se puede hacer validacion de datos al añadir "required" para no mandar el formulario vacio
+<input type="text" name="username" id="username" required>
+O al usar if en la funcion de la vista y pasar algun mensaje de error como argumento al .html:
+        if len(username) >= 4 and len(username) <= 25 and len(password) >= 6 and len(password) <= 40:
+            return f"Nombre de usuario: {username}\nContraseña: {password}"
+        else:
+            error = """Nombre de usuario debe tener entre 4 y 25 caracteres y
+            la contraseña debe tener entre 6 y 40 caracteres.
+            """
+            return render_template('auth/register.html', error = error)
+register.html:
+{% if error %}
+    <p style="color: crimson;">{{ error }}</p>
+{% endif %}
+
+- Aprendi a usar WTForms para poder hacer clases con los formularios y ahorrarme todo el trabajo de escribirlo en HTML y hacer la validacion de datos por mi cuenta:
+class RegisterForm(FlaskForm):
+    username = StringField("Nombre de usuario: ", validators= [DataRequired(), Length(min=4, max= 25)])
+    password = PasswordField("Password: ", validators= [DataRequired(), Length(min=6, max= 40)])
+    submit = SubmitField("Registrar: ")
+
+def register():
+    form = RegisterForm()
+    if form.validate_on_submit():
+        username = form.username.data
+        password = form.password.data
+        return f"Nombre de usuario: {username}\nContraseña: {password}"
+    return render_template('auth/register.html', form = form)
+
+register.html:
+<form action="" method="post"> 
+    {{ form.hidden_tag() }}
+    {{ form.username.label }}  {{ form.username }}
+    {{ form.password.label }}  {{ form.password }}
+    {{ form.submit}}
+</form>
+
+
+
+Section 5:
+- Empezaremos a hacer una aplicacion mas completa en donde aplicaremos todo lo visto (rutas, vistas, plantillas, formularios) y tambien cosas nuevas. (DBs, auth, sesiones, librerias utiles)
+- La app que haremos se llama ToDoList.
+
+
+
+
+
+
+Brainstorming de mis ideas para la app de Flask:
+- Display my cases for today:
+    - Connect with Outlook's API or SimplyBook API (Holy grail would be Salesforce API)
+    - Maybe do something to autofill thei nstructions on ^Power??
+- For SCs, display everyone's cases for today (Maybe paste the engineers list and then get the booking, machine & who's assigned to from Slack [Or wherever Slack gets it from in the first place])
+- Generate automatically the emails for today's cases (Maybe copy + paste the email templates .wordx? Or load it somehow?)
+- TL;DR of the instructions (Reserved for senior RCL engineers? Something alike JPMC requirements)
+- Display instructions? (Altough SP Hub does that already.... Login is a painful friction point though)
+- Auto-generate escalation template

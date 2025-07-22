@@ -1,0 +1,25 @@
+{% extends 'base.html' %} {# Esta instruccion hace que podamos heredar el contenido ubicado en la plantilla base.html #}
+
+{% block title %}Render web{% endblock %}
+
+{% block content %}
+    <h1> Bienvenido a mi sitio web. Copyright</h1>
+    {% if name %}  {# Para poder usar estructuras de control (if, else, bucles, etc) se usa {% if ... %} #}
+    <p>Hola, {{name | upper }}</p>  {# Mierdon para hacer comentarios. Para poder pasar datos, se usa {{}} que es una estructura de Jinja2 #}
+    {% else %}
+    <p>Hola, desconocido</p>
+    {% endif %}  <!-- Indica donde termina el if statement -->
+
+
+    <h2>Lista de amiguitos</h2>
+    <ol>    {# Esta etiqueta sirve para hacer una lista numerada en HTML. Si quisiera una lista en donde no importa el orden, se usaria <ul></ul> #}
+        {% for friend in friends | reverse %}
+        <li> {{ friend }}</li>  {# <li></li> representa cada item individual dentro de una lista. En este caso, el for itera sobre la lista Friends e imprime cada friend en la webpage #}
+        {% endfor %}
+    </ol>
+
+    <p>La fecha de hoy es: {{date | today }}</p>  {# Sin filtros, da la fecha en este formato: 2025-07-09 19:24:40.967488. Con el filtro 'today' aparece en este formato  09-07-2025 #}
+    <p>La frase repetida: {{ repeat("Hola ", 3) }}</p>  {# Pasamos la funcion 'repeat' usando @app.add_template_global para poder usarla en el template. #}
+{% endblock %}
+
+

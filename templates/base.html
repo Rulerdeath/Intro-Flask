@@ -1,0 +1,27 @@
+{# Este archivo, comunmente nombrado base.html sirve para tener un template de todo lo que se va a copiar cuando se use como herencia para otras plantillas.#}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> Mi sitio web bonito - {% block title %}{% endblock %}</title> {# Podemos hacer el titulo dinamico con bloques de contenido que van en {% %}. Esto se ve reflejado en el nombre de la pestaña #}
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="{{ url_for('static', filename = 'css/style.css') }}">
+    </head>
+    <body>
+        {% block content %}
+        {# Aqui va todo lo que vaya en medio de 'block content' ubicado en index.html. #}
+        {% endblock %}
+        <nav>
+            <ul>
+                <li> <a href="{{ url_for('index') }}">URL para ir al index</a> </li> {# Con url_for podemos crear un hyperlink que lleve a la vista sin necesidad de referenciar todo el path del archivo html #}
+                <li> <a href="{{ url_for('hello')}}">URL para ir a /hello</a> </li>
+                <li> <a href="{{ url_for('code', code = 'print(code)')}}">URL para ir a /code</a> </li>
+                <li> <a href="{{ url_for('register')}}">URL para ir a /auth/register</a> </li>
+            </ul>
+        </nav>
+
+        <script src="{{ url_for('static', filename = 'js/main.js') }}"></script>
+
+    </body>
+</html>
