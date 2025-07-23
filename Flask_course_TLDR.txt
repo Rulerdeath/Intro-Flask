@@ -78,6 +78,7 @@ Brainstorming de mis ideas para la app de Flask:
 - Display my cases for today:
     - Connect with Outlook's API or SimplyBook API (Holy grail would be Salesforce API)
     - Maybe do something to autofill thei nstructions on ^Power??
+    - Have a timer for when your next case will begin. Or at least have what time is in GMT compared to your local time (fuck this)
 - For SCs, display everyone's cases for today (Maybe paste the engineers list and then get the booking, machine & who's assigned to from Slack [Or wherever Slack gets it from in the first place])
 - Generate automatically the emails for today's cases (Maybe copy + paste the email templates .wordx? Or load it somehow?)
 - TL;DR of the instructions (Reserved for senior RCL engineers? Something alike JPMC requirements)
