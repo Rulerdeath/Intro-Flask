@@ -1,0 +1,15 @@
+.env-todo/
+# Entornos virtuales
+.env/
+.env-todo/
+venv/
+__pycache__/
+
+# Archivos del sistema
+*.pyc
+.DS_Store
+
+# Config de editor
+.vscode/
+.idea/
+
