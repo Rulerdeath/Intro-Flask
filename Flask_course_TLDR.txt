@@ -68,7 +68,17 @@ register.html:
 Section 5:
 - Empezaremos a hacer una aplicacion mas completa en donde aplicaremos todo lo visto (rutas, vistas, plantillas, formularios) y tambien cosas nuevas. (DBs, auth, sesiones, librerias utiles)
 - La app que haremos se llama ToDoList. Nos permitira registrarnos e iniciar sesion, validar los datos al momento de iniciar la sesion, tener una DB de usuarios y contraseñas y poder crear tareas con titulo y descripcion:
+- Creamos una app de Flask en __init__.py y seteamos toda la configuracion inicial a la hora de ejecutar la app:
+    app.config.from_mapping(  #Nos permite setear la configuracion interna de la app de Flask. El .from_mapping nos permite setear varias configuraciones a la vez
+        DEBUG = True,
+        SECRET_KEY = 'dev'
+    )
+- Ya teniendo la app de Flask seteada y con una ruta '/' en __init__.py, lo que podemos hacer es invocarla en run.py. Asi tenemos mas ordenada nuestra app y podemos ejecutarla con "python3 run.py"
+from todor import create_app  # Importa la función desde __init__.py
 
+if __name__ == '__main__':
+    app = create_app()  # Llama a la función y obtiene una app configurada
+    app.run()  #run with python3 run.py  # Lanza el servidor
 
 
 
@@ -84,6 +94,7 @@ Brainstorming de mis ideas para la app de Flask:
 - TL;DR of the instructions (Reserved for senior RCL engineers? Something alike JPMC requirements)
 - Display instructions? (Altough SP Hub does that already.... Login is a painful friction point though)
 - Auto-generate escalation template
+- Auto-generate preload summary
 
 
 
