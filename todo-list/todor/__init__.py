@@ -10,6 +10,13 @@ def create_app():
         SECRET_KEY = 'dev'
     )
 
+    #Registro de Blueprint
+    from . import todo
+    app.register_blueprint(todo.bp)
+
+    from . import auth
+    app.register_blueprint(auth.bp)
+
     @app.route('/')
     def index():
         return "Hola mundo. Index"
