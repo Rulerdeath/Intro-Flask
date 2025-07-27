@@ -80,6 +80,26 @@ if __name__ == '__main__':
     app = create_app()  # Llama a la función y obtiene una app configurada
     app.run()  #run with python3 run.py  # Lanza el servidor
 
+- Blueprints nos permite organizar nuestras vistas. Esto es util cuando tenemos varias vistas en otros modulos y tenemos que registrarlas en Blueprints para tener todo en un solo lugar.
+- Para definir un Blueprint en un modulo (auth.py, todo.py) lo hacemos asi:
+from flask import Blueprint
+
+bp = Blueprint('bp_name_xddd', __name__, url_prefix='/todo')  #bp_name es el nombre interno del blueprint. Todas las rutas de este blueprint comenzaran con /todo
+
+- Luego en __init__.py impoertamos el objeto bp y lo registramos:
+    # Registro de Blueprints
+    from . import todo
+    app.register_blueprint(todo.bp)  #todo.bp viene del nombre que le dimos al blueprint en todo.py
+
+    from . import auth
+    app.register_blueprint(auth.bp)
+
+
+
+
+
+
+
 
 
 
@@ -87,8 +107,8 @@ if __name__ == '__main__':
 Brainstorming de mis ideas para la app de Flask:
 - Display my cases for today:
     - Connect with Outlook's API or SimplyBook API (Holy grail would be Salesforce API)
-    - Maybe do something to autofill thei nstructions on ^Power??
-    - Have a timer for when your next case will begin. Or at least have what time is in GMT compared to your local time (fuck this)
+    - Maybe do something to autofill the instructions on ^Power??
+    - Have a timer for when your next case will begin. Or at least have what time is in GMT compared to your local time (pain)
 - For SCs, display everyone's cases for today (Maybe paste the engineers list and then get the booking, machine & who's assigned to from Slack [Or wherever Slack gets it from in the first place])
 - Generate automatically the emails for today's cases (Maybe copy + paste the email templates .wordx? Or load it somehow?)
 - TL;DR of the instructions (Reserved for senior RCL engineers? Something alike JPMC requirements)
