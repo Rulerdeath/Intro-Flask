@@ -1,12 +1,12 @@
-from flask import Blueprint
+from flask import Blueprint, render_template
 
 bp = Blueprint('auth', __name__, url_prefix='/auth')
 
 
 @bp.route('/register')
 def register():
-    return "Registrar usuario"
+    return render_template("auth/register.html")
 
 @bp.route('/login')
 def login():
-    return "Iniciar sesion"
+    return render_template("auth/login.html")
